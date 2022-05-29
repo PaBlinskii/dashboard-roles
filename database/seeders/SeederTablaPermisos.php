@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-//Spatie agregar modelo permisos
+//agregamos el modelo de permisos de spatie
 use Spatie\Permission\Models\Permission;
 
 class SeederTablaPermisos extends Seeder
@@ -18,18 +17,20 @@ class SeederTablaPermisos extends Seeder
     public function run()
     {
         $permisos = [
-            //Tabla Roles
+            //Operaciones sobre tabla roles
             'ver-rol',
             'crear-rol',
             'editar-rol',
             'borrar-rol',
-            //Tabla Blogs
+
+            //Operacions sobre tabla blogs
             'ver-blog',
             'crear-blog',
             'editar-blog',
-            'borrar-blog',
+            'borrar-blog'
         ];
-        foreach($permisos as $permiso){
+
+        foreach($permisos as $permiso) {
             Permission::create(['name'=>$permiso]);
         }
     }
