@@ -1,0 +1,88 @@
+laravel new dash_roles
+
+code dash_roles
+
+composer require infyomlabs/laravel-ui-stisla
+
+dash_roles=app=Providers=AppServiceProviders y agregar Schema y Paginator
+
+php artisan ui stisla --auth
+
+php artisan ui stisla
+
+npm install && npm run dev
+
+//si sale error ejecutar esto
+npm uninstall webpack --save-dev
+
+//despues se instala
+npm uninstall webpack --save-dev --force
+
+php artisan ui stisla-fortify --auth
+npm install
+npm run dev
+
+composer require spatie/laravel-permission
+
+dash_roles=config=app.php
+
+por si no aparece Spatie agregar esta linea
+Spatie\Permission\PermissionServiceProvider::class
+
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+
+php artisan optimize:clear
+
+php artisan migrate
+
+//por si sale error modificar esto
+config=database.php=linea60= 'engine'='null' por 'engine'='innodb' y quitar mb4 del utf8
+
+//instalamos este paquete de Forms&HTML
+composer require laravelcollective/html
+
+php artisan make:migration create_blogs_table
+
+php artisan make:model Blog
+
+//agregar una linea en Models
+//Spatie
+use Spatie\Permission\Traits\HasRoles;
+
+//pagina de spatie roles y permisos
+spatie.be/docs/laravel-permission/v4/basic-usage/middleware
+
+//agregar las siguientes lineas en app/http/kernel.php adentro de protected $routeMiddleware = [ ];
+
+'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+
+// ir a routes/web.php para agregar los controllers
+// Instalamos los controladores con los siguientes comandos
+php artisan make:controller RolController --resource
+php artisan make:controller UsuarioController --resource
+php artisan make:controller BlogController --resource
+
+//Verificamos nuestras rutas
+php artisan route:list
+
+//agregamos unas lineas en Controllers/RolController.php
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\DB;
+
+//despues de ingresar codigo en rolcontroller.php procedemos a crear carpetas
+//en views = blogs, roles, usuarios, y dentro de ellas index.blade.php, crear.blade.php, editar.blade.php
+
+//seguido se va crear el super admin en app/providers/AuthServiceProvider.php
+
+Gate::before(function ($user, $ability){
+            return $user->email == 'admin@gmail.com' ?? null;
+        });
+
+//se crea un seeder para generar registros automaticamente
+php aratisan make:seeder SeederTablaPermisos
+
+// Se crea la funcion para las tablas roles y blogs, seguido se ejecuta el seed
+php artisan db:seed --class=SeederTablaPermisos
