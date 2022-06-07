@@ -86,3 +86,16 @@ php aratisan make:seeder SeederTablaPermisos
 
 // Se crea la funcion para las tablas roles y blogs, seguido se ejecuta el seed
 php artisan db:seed --class=SeederTablaPermisos
+
+
+    {{-- <form action="/delete" method="POST"></form> --}}
+                                                {{-- En lugar de usar esto usamos el siguiente --}}
+
+// Se procedio a buscar el codigo fuente en github y analizarlo...
+
+// Otra Forma para crear un super Usuario
+
+php artisan make:seeder SuperAdminSeeder
+
+// crear el seeder
+php artisan db:seed --class SuperAdminSeeder
